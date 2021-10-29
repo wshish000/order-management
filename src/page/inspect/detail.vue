@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { parseToDate } from "../../utils/mUtil";
 import { getChaOfD, getChaOfZ, getShangOfD, getShangOfZ } from "@/api/inspect";
 import Pagination from "@/components/pagination";
 import { mapGetters } from "vuex";
@@ -274,9 +275,12 @@ export default {
       this.getDetail();
       const para = Object.assign({}, this.inspectSearch, this.searchData);
       getInspect(para).then((res) => {
-        console.log(res);
         this.pageTotal = res.pageTotal;
-        this.tableData = res.inspectList;
+        let table = res.inspectList;
+        table.forEach((item) => {
+          item.inspect_time = parseToDate(item.inspect_time);
+        });
+        this.tableData = table;
       });
     },
     // getTodayList() {

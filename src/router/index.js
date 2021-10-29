@@ -95,17 +95,6 @@ export const constantRouterMap = [
         },
         component: () => import("@/page/inspect/statistic"),
       },
-      {
-        path: "showDetail",
-        name: "showDetail",
-        meta: {
-          title: "详情展示",
-          icon: "el-icon-user-solid",
-          routerType: "leftmenu",
-          roles: ["Manager"],
-        },
-        component: () => import("@/page/inspect/showDetail"),
-      },
     ],
   },
 ];

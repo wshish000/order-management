@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { parseToDate } from "../../utils/mUtil";
 import { getDataOfChart } from "@/api/punish";
 import Pagination from "@/components/pagination";
 import { mapGetters } from "vuex";
@@ -127,9 +128,12 @@ export default {
       this.getChart();
       const para = Object.assign({}, this.punishSearch, this.searchPunish);
       getPunish(para).then((res) => {
-        console.log(res);
         this.pageTotal = res.pageTotal;
-        this.tableData = res.punishList;
+        let table = res.punishList;
+        table.forEach((item) => {
+          item.punish_time = parseToDate(item.punish_time);
+        });
+        this.tableData = table;
       });
     },
   },
