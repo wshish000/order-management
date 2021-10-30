@@ -74,3 +74,9 @@ export const parseToDate = (timeValue) => {
     year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
   return result;
 };
+
+export const setContentHeight = (that, ele, height) => {
+  that.$nextTick(() => {
+    ele.style.height = document.body.clientHeight - height + "px";
+  });
+};

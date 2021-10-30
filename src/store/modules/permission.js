@@ -37,12 +37,15 @@ function filterAsyncRouter(asyncRouterMap, roles) {
 const permission = {
   state: {
     routers: constantRouterMap,
+    addRouters:[],
   },
   getters: {
     permission_routers: (state) => state.routers, // 所有路由
+    addRouters: state => state.addRouters, //权限过滤路由
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
+      state.addRouters = routers,
       state.routers = constantRouterMap.concat(routers); // 总路由
     },
   },
